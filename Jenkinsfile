@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
     registry = "docker1anil/bookstoreweb"
-    registryCredential = dockerhub
+    registryCredential = 'dockerhub'
     }
         stages {  
        	    stage("build artifact") {
