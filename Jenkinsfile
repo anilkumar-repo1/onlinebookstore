@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
     registry = "docker1anil/bookstoreweb"
+    registryCredential = dockerhub
     }
         stages {  
        	    stage("build artifact") {
@@ -28,6 +29,16 @@ pipeline {
                 }
                 }
 
+            }
+            stage('Upload to dockerhub'){
+            steps{
+            scripts{
+            docker.withRegistry('', registryCredential) {
+                            dockerImage.push("V$BUILD_NUMBER")
+                            dockerImage.push('latest')
+            }
+            }
+            }
             }
         }
 }
