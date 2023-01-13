@@ -1,6 +1,6 @@
 pipeline {  
     agent any
-    env{
+    environment {
     registry = docker1anil/bookstoreweb
     }
         stages {  
