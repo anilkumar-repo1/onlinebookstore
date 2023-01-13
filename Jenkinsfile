@@ -30,15 +30,15 @@ pipeline {
                 }
 
             }
-            stage('Upload to dockerhub'){
-            steps{
-            scripts{
-            docker.withRegistry('', registryCredential) {
+            stage('Upload Image'){
+                      steps{
+                        script {
+                          docker.withRegistry('', registryCredential) {
                             dockerImage.push("V$BUILD_NUMBER")
                             dockerImage.push('latest')
-            }
-            }
-            }
-            }
+                          }
+                        }
+                      }
+                    }
         }
 }
