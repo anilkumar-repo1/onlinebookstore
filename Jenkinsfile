@@ -1,5 +1,8 @@
 pipeline {  
-    agent any  
+    agent any
+    env{
+    registry = docker1anil/bookstoreweb
+    }
         stages {  
        	    stage("build artifact") {
            	    steps {  
@@ -18,5 +21,13 @@ pipeline {
                                 sh 'mvn test'
                             }
                         }
+            stage('Build app image'){
+                steps{
+                script{
+                dockerimage = docker.build registry + 'V$BUILD_NUMBER'
+                }
+                }
+
+            }
         }
 }
