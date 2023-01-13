@@ -1,7 +1,7 @@
 pipeline {  
     agent any
     environment {
-    registry = docker1anil/bookstoreweb
+    registry = "docker1anil/bookstoreweb"
     }
         stages {  
        	    stage("build artifact") {
