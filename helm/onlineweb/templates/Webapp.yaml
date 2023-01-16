@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onlineweb
+  labels:
+    app: onlineweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: onlineweb
+  template:
+    metadata:
+      labels:
+        app: onlineweb
+    spec:
+      containers:
+        - name: onlineweb
+          image: {{.Values.appimage}}
+          ports:
+            - name: webapp-port
+              containerPort: 8080
