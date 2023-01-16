@@ -45,9 +45,11 @@ pipeline {
                         sh "docker rmi $registry:V$BUILD_NUMBER"
                       }
                     }
-            stage('Deploy the image to cluster')
-                steps{
-
-                }
+            stage('Deploy the image to cluster'){
+                    agent {label'KOPS'}
+                    steps{
+                    sh "helm --upgrade --force onlineweb-stack helm/onlineweb --set appimage=${registry}"
+                    }
+                    }
         }
 }
