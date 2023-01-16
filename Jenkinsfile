@@ -45,5 +45,9 @@ pipeline {
                         sh "docker rmi $registry:V$BUILD_NUMBER"
                       }
                     }
+            stage('Deploy the image to cluster')
+                steps{
+
+                }
         }
 }
