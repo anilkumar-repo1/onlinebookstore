@@ -48,7 +48,7 @@ pipeline {
             stage('Deploy the image to cluster'){
                     agent {label'KOPS'}
                     steps{
-                    sh "helm --upgrade --force onlineweb-stack helm/onlineweb --set appimage=${registry}"
+                    sh "helm upgrade --install --force onlineweb-stack helm/onlineweb --set appimage=${registry}"
                     }
                     }
         }
